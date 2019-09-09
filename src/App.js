@@ -2,12 +2,20 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import BookmarksContext from './BookmarksContext'
 import AddBookmark from './AddBookmark/AddBookmark'
+import EditBookmarkForm from './EditBookmark/EditBookmarkForm'
 import Rating from './Rating/Rating'
 import BookmarkList from './BookmarkList/BookmarkList'
 import Nav from './Nav/Nav'
 import config from './config'
 import './App.css'
 
+// todo ... add a <Route /> for editing a bookmark
+// make a component w/ a <form> for editing the item: UpdateBookmarkForm
+// add updated method to context & context provider component
+   // set initial values for fields in state based on current vals
+   // Validate form on submission and perform PATCH request
+   // if PATCH is 204, call update method on context
+   // implement pdate method to context's data (state) in provider component
 class App extends Component {
   state = {
     bookmarks: [],
@@ -58,7 +66,8 @@ class App extends Component {
     const contextValue = {
       bookmarks: this.state.bookmarks,
       addBookmark: this.addBookmark,
-      deleteBookmark: this.deleteBookmark
+      deleteBookmark: this.deleteBookmark,
+      updateBookmark: this.updateBookmark
     }
     return (
       <main className='App'>
@@ -75,6 +84,10 @@ class App extends Component {
               exact
               path='/'
               component={BookmarkList}
+            />
+            <Route 
+              path='/edit/:bookmarkId'
+              component={EditBookmarkForm}
             />
           </div>
         </BookmarksContext.Provider>

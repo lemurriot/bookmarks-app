@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import config from '../config'
 import Rating from '../Rating/Rating';
 import BookmarksContext from '../BookmarksContext'
@@ -45,6 +46,7 @@ export default function BookmarkItem(props) {
                 {props.title}
               </a>
             </h3>
+            <Link to={`/edit/${props.id}`}>Edit Bookmark</Link>
             <Rating value={props.rating} />
           </div>
           <p className='BookmarkItem__description'>
