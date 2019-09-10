@@ -37,6 +37,13 @@ class App extends Component {
     })
   }
 
+  updateBookmark = bookmark => {
+    const filteredBookmarks = this.state.bookmarks.filter(bm => bm.id !== bookmark.id)
+    this.setState({
+      bookmarks: [ ...filteredBookmarks, bookmark ],
+    })
+  }
+
   deleteBookmark = bookmarkId => {
     const newBookmarks = this.state.bookmarks.filter(bm => bm.id !== bookmarkId)
     this.setState({
